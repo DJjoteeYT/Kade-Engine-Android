@@ -303,11 +303,10 @@ class DialogueBox extends FlxSpriteGroup
 		}
 	}
 
-    	function cleanDialog():Void
-    	{
-    		var splitName:Array<String> = dialogueList[0].split(":");
-    		curCharacter = splitName[1];
-    		dialogueList[0] = dialogueList[0].substr(splitName[1].length + 2).trim();
-    	}
-    }
+	function cleanDialog():Void
+	{
+		var splitName:Array<String> = dialogueList[0].split(":");
+		curCharacter = splitName[1];
+		dialogueList[0] = dialogueList[0].substr(splitName[1].length + 2).trim();
+	}
 }
