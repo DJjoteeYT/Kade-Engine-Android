@@ -46,11 +46,6 @@ class MusicBeatState extends FlxUIState
 		controls.trackedinputs = [];
 	}
 
-	override function destroy() {
-		controls.removeFlxInput(trackedinputs);
-
-		super.destroy();
-	}
 	#else
 	public function addVirtualPad(?DPad, ?Action){};
 	#end
@@ -61,6 +56,7 @@ class MusicBeatState extends FlxUIState
 
 	override function destroy()
 	{
+	    controls.removeFlxInput(trackedinputs);
 		Application.current.window.onFocusIn.remove(onWindowFocusOut);
 		Application.current.window.onFocusIn.remove(onWindowFocusIn);
 		super.destroy();
