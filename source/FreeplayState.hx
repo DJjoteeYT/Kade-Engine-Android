@@ -664,15 +664,12 @@ class FreeplaySongMetadata
 {
 	public var songName:String = "";
 	public var week:Int = 0;
-	#if FEATURE_STEPMANIA
 	public var path:String;
-	#end
 	var sm:SMFile;
 	public var songCharacter:String = "";
 
 	public var diffs = [];
 
-	#if FEATURE_STEPMANIA
 	public function new(song:String, week:Int, songCharacter:String, ?sm:SMFile = null, ?path:String = "")
 	{
 		this.songName = song;
@@ -681,12 +678,4 @@ class FreeplaySongMetadata
 		this.sm = sm;
 		this.path = path;
 	}
-	#else
-	public function new(song:String, week:Int, songCharacter:String)
-	{
-		this.songName = song;
-		this.week = week;
-		this.songCharacter = songCharacter;
-	}
-	#end
 }
