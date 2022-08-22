@@ -6,7 +6,7 @@ import flixel.system.FlxSound;
 #if FEATURE_STEPMANIA
 import smTools.SMFile;
 #end
-#if FEATURE_FILESYSTEM
+#if !FEATURE_FILESYSTEM
 import sys.FileSystem;
 import sys.io.File;
 #end

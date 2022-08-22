@@ -2193,8 +2193,7 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(new ChartingState());
 			clean();
 			PlayState.stageTesting = false;
-			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
-			FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, releaseInput);
+
 			#if FEATURE_LUAMODCHART
 			if (luaModchart != null)
 			{
@@ -2246,8 +2245,7 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(new AnimationDebug(dad.curCharacter));
 			clean();
 			PlayState.stageTesting = false;
-			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
-			FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, releaseInput);
+
 			#if FEATURE_LUAMODCHART
 			if (luaModchart != null)
 			{
@@ -2288,8 +2286,7 @@ class PlayState extends MusicBeatState
 				});
 				FlxG.switchState(new StageDebugState(Stage.curStage, gf.curCharacter, boyfriend.curCharacter, dad.curCharacter));
 				clean();
-				FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
-				FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, releaseInput);
+
 				#if FEATURE_LUAMODCHART
 				if (luaModchart != null)
 				{
@@ -2304,8 +2301,7 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(new AnimationDebug(boyfriend.curCharacter));
 			clean();
 			PlayState.stageTesting = false;
-			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
-			FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, releaseInput);
+
 			#if FEATURE_LUAMODCHART
 			if (luaModchart != null)
 			{
@@ -3887,7 +3883,7 @@ class PlayState extends MusicBeatState
 		{
 			if (!PlayStateChangeables.botPlay)
 			{
-				if (keys[spr.ID]
+				/*if (keys[spr.ID]
 					&& spr.animation.curAnim.name != 'confirm'
 					&& spr.animation.curAnim.name != 'pressed'
 					&& !spr.animation.curAnim.name.startsWith('dirCon'))
@@ -3898,7 +3894,7 @@ class PlayState extends MusicBeatState
 			else if (FlxG.save.data.cpuStrums)
 			{
 				if (spr.animation.finished)
-					spr.playAnim('static');
+					spr.playAnim('static');*/
 			}
 		});
 	}

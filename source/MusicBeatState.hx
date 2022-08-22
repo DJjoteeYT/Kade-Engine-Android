@@ -58,7 +58,7 @@ class MusicBeatState extends FlxUIState
 	{
 	    controls.removeFlxInput(trackedinputs);
 		Application.current.window.onFocusIn.remove(onWindowFocusOut);
-		Application.current.window.onFocusIn.remove(onWindowFocusIn);
+		//Application.current.window.onFocusIn.remove(onWindowFocusIn);
 		super.destroy();
 	}
 
