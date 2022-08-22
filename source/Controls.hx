@@ -327,11 +327,11 @@ class Controls extends FlxActionSet
 			case A_B_C:
 			    inline forEachBound(Control.ACCEPT, (action, state) -> addbutton(action, virtualPad.buttonA, state));
 				inline forEachBound(Control.BACK, (action, state) -> addbutton(action, virtualPad.buttonB, state));
-				inline forEachBound(Control.RESET, (action, state) -> addbutton(action, virtualPad.buttonB, state));
+				inline forEachBound(Control.PAUSE, (action, state) -> addbutton(action, virtualPad.buttonB, state));
 			case A_B_X:
 			    inline forEachBound(Control.ACCEPT, (action, state) -> addbutton(action, virtualPad.buttonA, state));
 				inline forEachBound(Control.BACK, (action, state) -> addbutton(action, virtualPad.buttonB, state));
-				inline forEachBound(Control.RESET, (action, state) -> addbutton(action, virtualPad.buttonX, state));
+				inline forEachBound(Control.CHEAT, (action, state) -> addbutton(action, virtualPad.buttonX, state));
 			case A_B_X_Y:
 			    inline forEachBound(Control.ACCEPT, (action, state) -> addbutton(action, virtualPad.buttonA, state));
 				inline forEachBound(Control.BACK, (action, state) -> addbutton(action, virtualPad.buttonB, state));
