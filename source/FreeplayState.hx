@@ -3,13 +3,13 @@ package;
 import openfl.utils.Future;
 import openfl.media.Sound;
 import flixel.system.FlxSound;
-#if FEATURE_STEPMANIA
+#if (FEATURE_STEPMANIA && !mobile)
 import smTools.SMFile;
 #end
-
+#if FEATURE_FILESYSTEM
 import sys.FileSystem;
 import sys.io.File;
-
+#end
 import Song.SongData;
 import flixel.input.gamepad.FlxGamepad;
 import flash.text.TextField;
@@ -83,9 +83,9 @@ class FreeplayState extends MusicBeatState
 		PlayState.inDaPlay = false;
 		PlayState.currentSong = "bruh";
 
-		#if !FEATURE_STEPMANIA
+		#if (!FEATURE_STEPMANIA && mobile)
 		trace("FEATURE_STEPMANIA was not specified during build, sm file loading is disabled.");
-		#elseif FEATURE_STEPMANIA
+		#elseif (FEATURE_STEPMANIA && !mobile)
 		// TODO: Refactor this to use OpenFlAssets.
 		trace("tryin to load sm files");
 		for (i in FileSystem.readDirectory("assets/sm/"))
@@ -208,6 +208,10 @@ class FreeplayState extends MusicBeatState
 		// add(selector);
 
 		var swag:Alphabet = new Alphabet(1, 0, "swag");
+		
+        #if mobileC
+		addVirtualPad(FULL, A_B);
+		#end
 
 		super.create();
 	}
@@ -318,9 +322,9 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.music.volume -= 0.5 * FlxG.elapsed;
 		}
 
-		var upP = FlxG.keys.justPressed.UP;
-		var downP = FlxG.keys.justPressed.DOWN;
-		var accepted = FlxG.keys.justPressed.ENTER;
+		var upP = controls.UP_P;
+		var downP = controls.DOWN_P;
+		var accepted = controls.ACCEPT;
 		var dadDebug = FlxG.keys.justPressed.SIX;
 		var charting = FlxG.keys.justPressed.SEVEN;
 		var bfDebug = FlxG.keys.justPressed.ZERO;
@@ -396,9 +400,9 @@ class FreeplayState extends MusicBeatState
 		}
 		else
 		{
-			if (FlxG.keys.justPressed.LEFT)
+			if (controls.LEFT_P)
 				changeDiff(-1);
-			if (FlxG.keys.justPressed.RIGHT)
+			if (controls.RIGHT_P)
 				changeDiff(1);
 		}
 
@@ -492,7 +496,7 @@ class FreeplayState extends MusicBeatState
 		PlayState.storyDifficulty = difficulty;
 		PlayState.storyWeek = songs[curSelected].week;
 		Debug.logInfo('Loading song ${PlayState.SONG.songName} from week ${PlayState.storyWeek} into Free Play...');
-		#if FEATURE_STEPMANIA
+		#if (FEATURE_STEPMANIA && !mobile)
 		if (songs[curSelected].songCharacter == "sm")
 		{
 			Debug.logInfo('Song is a StepMania song!');
@@ -664,12 +668,15 @@ class FreeplaySongMetadata
 {
 	public var songName:String = "";
 	public var week:Int = 0;
+	#if (FEATURE_STEPMANIA && !mobile)
+	public var sm:SMFile;
 	public var path:String;
-	var sm:SMFile;
+	#end
 	public var songCharacter:String = "";
 
 	public var diffs = [];
 
+	#if (FEATURE_STEPMANIA && !mobile)
 	public function new(song:String, week:Int, songCharacter:String, ?sm:SMFile = null, ?path:String = "")
 	{
 		this.songName = song;
@@ -678,4 +685,12 @@ class FreeplaySongMetadata
 		this.sm = sm;
 		this.path = path;
 	}
+	#else
+	public function new(song:String, week:Int, songCharacter:String)
+	{
+		this.songName = song;
+		this.week = week;
+		this.songCharacter = songCharacter;
+	}
+	#end
 }
