@@ -43,7 +43,6 @@ class DialogueBox extends FlxSpriteGroup
 		super();
 		
 
-
 		switch (PlayState.SONG.songId.toLowerCase())
 		{
 			case 'senpai':
@@ -165,7 +164,9 @@ class DialogueBox extends FlxSpriteGroup
 	{
 		// HARD CODING CUZ IM STUPDI
 		if (PlayState.SONG.songId.toLowerCase() == 'roses')
+		{
 			portraitLeft.visible = false;
+		}
 		if (PlayState.SONG.songId.toLowerCase() == 'thorns')
 		{
 			portraitLeft.visible = false;
@@ -188,17 +189,19 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			startDialogue();
 			dialogueStarted = true;
-		//mobile things
-		#if mobile
-		var justTouched:Bool = false;
-
-		for (touch in FlxG.touches.list)
-		{
-			justTouched = false;
-
-			if (touch.justReleased){
-				justTouched = true;
-			}
+		
+    		#if mobile
+    		var justTouched:Bool = false;
+    
+    		for (touch in FlxG.touches.list)
+    		{
+    			justTouched = false;
+    
+    			if (touch.justReleased)
+    			{
+    				justTouched = true;
+    			}
+    		}
 		}
 		#end
 		if (PlayerSettings.player1.controls.ACCEPT #if mobile || FlxG.touches.justStarted().length>0 #end && dialogueStarted == true)
@@ -303,10 +306,11 @@ class DialogueBox extends FlxSpriteGroup
 		}
 	}
 
-	function cleanDialog():Void
-	{
-		var splitName:Array<String> = dialogueList[0].split(":");
-		curCharacter = splitName[1];
-		dialogueList[0] = dialogueList[0].substr(splitName[1].length + 2).trim();
-	}
+    function cleanDialog():Void
+    {
+    	var splitName:Array<String> = dialogueList[0].split(":");
+    	curCharacter = splitName[1];
+    	dialogueList[0] = dialogueList[0].substr(splitName[1].length + 2).trim();
+    }
+    
 }
