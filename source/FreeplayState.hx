@@ -665,9 +665,9 @@ class FreeplaySongMetadata
 	public var songName:String = "";
 	public var week:Int = 0;
 	#if FEATURE_STEPMANIA
-	public var sm:SMFile;
 	public var path:String;
 	#end
+	var sm:SMFile;
 	public var songCharacter:String = "";
 
 	public var diffs = [];
