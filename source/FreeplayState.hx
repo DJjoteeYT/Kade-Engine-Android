@@ -6,7 +6,7 @@ import flixel.system.FlxSound;
 #if (FEATURE_STEPMANIA && !mobile)
 import smTools.SMFile;
 #end
-#if (!FEATURE_FILESYSTEM && mobile)
+#if (FEATURE_FILESYSTEM && mobile)
 import sys.FileSystem;
 import sys.io.File;
 #end
@@ -237,7 +237,7 @@ class FreeplayState extends MusicBeatState
 
 			var diffs = [];
 			var diffsThatExist = [];
-			#if (!FEATURE_FILESYSTEM && mobile)
+			#if (FEATURE_FILESYSTEM && mobile)
 			if (Paths.doesTextAssetExist(Paths.json('songs/$songId/$songId-hard')))
 				diffsThatExist.push("Hard");
 			if (Paths.doesTextAssetExist(Paths.json('songs/$songId/$songId-easy')))
