@@ -31,6 +31,7 @@ class MusicBeatSubstate extends FlxSubState
 		super.create();
 		Application.current.window.onFocusIn.add(onWindowFocusIn);
 		Application.current.window.onFocusOut.add(onWindowFocusOut);
+		controls.removeFlxInput(trackedinputs);
 	}
 
 	private var lastBeat:Float = 0;
@@ -58,11 +59,6 @@ class MusicBeatSubstate extends FlxSubState
 		controls.trackedinputs = [];
 	}
 
-	override function destroy() {
-		controls.removeFlxInput(trackedinputs);
-
-		super.destroy();
-	}
 	#else
 	public function addVirtualPad(?DPad, ?Action){};
 	#end
